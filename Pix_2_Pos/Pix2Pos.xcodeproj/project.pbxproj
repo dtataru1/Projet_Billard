@@ -15,7 +15,7 @@
 		CF82DB1A2462F1DE009B2A44 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = "/Users/dtataru/OneDrive - epfl.ch/BA4/Programmation pour Ingénieurs/Projet_Billard/Products";
+			dstPath = "/Users/dtataru/OneDrive - epfl.ch/BA4/Programmation pour Ingénieurs/Projet_Billard";
 			dstSubfolderSpec = 0;
 			files = (
 				CF3BBAA32463019100D0DEFD /* Pix2Pos in CopyFiles */,
