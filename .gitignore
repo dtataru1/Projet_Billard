@@ -6,6 +6,7 @@
 
 *.bin
 *.png
+*.txt
 
 # OS generated files #
 ######################
