@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF3BBAA32463019100D0DEFD /* Pix2Pos in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF82DB1C2462F1DE009B2A44 /* Pix2Pos */; };
 		CF82DB202462F1DF009B2A44 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = CF82DB1F2462F1DF009B2A44 /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		CF82DB1A2462F1DE009B2A44 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			buildActionMask = 12;
+			dstPath = "/Users/dtataru/OneDrive - epfl.ch/BA4/Programmation pour Ingénieurs/Projet_Billard/Products";
 			dstSubfolderSpec = 0;
 			files = (
+				CF3BBAA32463019100D0DEFD /* Pix2Pos in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
