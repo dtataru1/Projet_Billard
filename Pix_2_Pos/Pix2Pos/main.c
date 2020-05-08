@@ -35,10 +35,11 @@ struct coord ball_coord (int C, int Lmin, int Lmax, int Cmin, int Cmax, pixelsco
 int main (int argc, char *argv[]) {
     
     if(argc!=30) {
-        printf("Il n'y a pas le bon nombre de paramètres dans la ligne de commandes\n");
+        fprintf(stderr, "Il n'y a pas le bon nombre de paramètres dans la ligne de commandes.\n");
         return -1;
     }
     
+    //Reading the input arguments
     int Lmin, Lmax, Cmin, Cmax, balldiameter;
     Lmin = atoi(argv[1]);
     Lmax = atoi(argv[2]);
@@ -46,117 +47,87 @@ int main (int argc, char *argv[]) {
     Cmax = atoi(argv[4]);
     balldiameter = atoi(argv[29]);
     if (balldiameter>20|| balldiameter<5) {
-        printf("Le diamètre de la balle est en dehors des bornes\n");
+        fprintf(stderr, "Le diamètre de la balle est en dehors des bornes.\n");
         return -1;
     }
     
-    int whiterange[6], yellowrange[6], redrange[6], bluerange[6];  //toujours minred maxred mingreen maxgreen minblue maxblue;
+    //Initiating color ranges arrays, as follows : Rmin Rmax Gmin Gmax Bmin Bmax
+    int whiterange[6], yellowrange[6], redrange[6], bluerange[6];
     
     for (int i=5; i<11; i++) redrange[i-5] = atoi(argv[i]);
     for (int i=11; i<17; i++) yellowrange[i-11] = atoi(argv[i]);
     for (int i=17; i<23; i++) whiterange[i-17] = atoi(argv[i]);
     for (int i=23; i<29; i++) bluerange[i-23] = atoi(argv[i]);
     
+    
+    //Reading the Pixmap file
     FILE* Pixmap = NULL;
     Pixmap = fopen("Pixmap.bin", "rb");
     if (Pixmap == NULL) {
-        perror("Impossilbe de lire le fichier Pixmap.bin\n");
+        fprintf(stderr, "Impossilbe de lire le fichier Pixmap.bin.\n");
         return -1;
     }
     
     unsigned int L, C;
     fread(&C, sizeof C, 1, Pixmap);
     fread(&L, sizeof L, 1, Pixmap);
-    printf("C = %d\nL = %d\n", C, L);
+
     if(L<10 || L>1000 || C<10|| C>1000) {
-        printf("La largeur et/ou hauteur sont en dehors des bornes\n");
+        fprintf(stderr, "La largeur et/ou hauteur sont en dehors des bornes.\n");
         return -1;
     }
     
     unsigned int* pixels = NULL;
     pixels = malloc(L *  C * sizeof(unsigned int));
     
-    if (pixels==NULL) exit(0);
+    if (pixels==NULL) {
+        fprintf(stderr, "Imppossible d'allouer la mémoire.\n");
+        return -1;
+    }
     
     size_t nbrelus = fread(pixels, sizeof(unsigned int), L*C, Pixmap);
 
     if(nbrelus<L*C) {
-        printf("Il n'y a pas assez de pixels dans le fichier Pixmap.bin\n");
+        fprintf(stderr, "Il n'y a pas assez de pixels dans le fichier Pixmap.bin.\n");
         return -1;
     }
     fclose(Pixmap);
     
     color* ballcolor = NULL;
     ballcolor = malloc(L*C*sizeof(color));
-    if (ballcolor==NULL) exit(0);
     pixelscore*  ballscore = NULL;
     ballscore = malloc(L*C*sizeof(pixelscore));
-    if (ballscore==NULL) exit(0);
+    if (ballscore==NULL || ballcolor==NULL) {
+        fprintf(stderr, "Imppossible d'allouer la mémoire.\n");
+        return -1;
+    }
     
+    //Converting to RGB and determining the coordinates of the three balls
     ball_color(C, Lmin, Lmax, Cmin, Cmax, ballcolor, pixels);
     ball_score(C, Lmin, Lmax, Cmin, Cmax, ballcolor, ballscore, whiterange, yellowrange, redrange);
     coord coordinates = ball_coord(C, Lmin, Lmax, Cmin, Cmax, ballscore);
-
-    printf("\n White coordinates : x = %d  y = %d  score = %d\n", coordinates.whitex, coordinates.whitey, coordinates.whitescore);
-    printf("\n Yellow coordinates : x = %d y = %d score = %d\n", coordinates.yellowx, coordinates.yellowy, coordinates.yellowscore);
-    printf("\n Red coordinates : x = %d y = %d score = %d\n", coordinates.redx, coordinates.redy, coordinates.redscore);
     
+    //Error management
     if (coordinates.whitescore == 0 || coordinates.redscore == 0 || coordinates.yellowscore == 0) {
-         printf("Il y a moins de 3 boules sur le tapis\n");
+         fprintf(stderr, "Il y a moins de 3 boules sur le tapis.\n");
          return -1;
      }
      
    if((abs(coordinates.whitex-coordinates.yellowx)<11 && abs(coordinates.whitey-coordinates.yellowy)<11) || (abs(coordinates.whitex-coordinates.redx)<11 && abs(coordinates.whitey-coordinates.redy)<11)
        || (abs(coordinates.redx-coordinates.yellowx)<11 && abs(coordinates.redy-coordinates.yellowy)<11)) {
-        printf("Au moins deux des boules se superposent\n");
+        fprintf(stderr, "Au moins deux des boules se superposent.\n");
         return -1;
     }
-    
- 
-    
-    
-  /*  for(int i=coordinates.whitex+1; i<Lmax; i++) {
-           for(int j=coordinates.whitey; j<Cmax; j++) {
-               
-               if (ballscore[i*C+j].white==coordinates.whitescore) {
-                   printf("Il y a deux boules blanches sur le tapis\n");
-                   return -1;
-               }
-           }
-    }
-    
-    for(int i=coordinates.yellowx+1; i<Lmax; i++) {
-           for(int j=coordinates.yellowy; j<Cmax; j++) {
-               
-               if (ballscore[i*C+j].yellow==coordinates.yellowscore) {
-                   printf("Il y a deux boules jaunes sur le tapis\n");
-                   return -1;
-               }
-           }
-    }
-
-    for(int i=coordinates.redx+1; i<Lmax; i++) {
-           for(int j=coordinates.redy; j<Cmax; j++) {
-               
-               if (ballscore[i*C+j].red==coordinates.redscore) {
-                   printf("Il y a deux boules rouges sur le tapis\n");
-                   return -1;
-               }
-           }
-    }
-    */
     
     FILE* Pos = NULL;
     Pos = fopen("Pos.txt", "w");
     if (Pos==NULL) {
-        perror("Impossible de créer, ouvrir ou écrire dans le fichier Pos.txt\n");
+        fprintf(stderr, "Impossible de créer, ouvrir ou écrire dans le fichier Pos.txt.\n");
         return -1;
     }
     
     fprintf(Pos, "Red: %d, %d, %d\nYellow: %d, %d, %d\nWhite: %d, %d, %d", coordinates.redx, coordinates.redy, coordinates.redscore, coordinates.yellowx, coordinates.yellowy, coordinates.yellowscore, coordinates.whitex, coordinates.whitey, coordinates.whitescore);
     fclose(Pos);
-    
-    
     
     free(pixels);
     free(ballcolor);
@@ -164,6 +135,7 @@ int main (int argc, char *argv[]) {
     return 0;
 }
 
+//Converting from Hexadecimal to RGB
 void ball_color (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[], unsigned int pixel[]) {
     for (int i=Lmin; i<Lmax; i++) {
         for (int j=Cmin; j<Cmax; j++) {
@@ -175,7 +147,7 @@ void ball_color (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[
 }
 
 
-//Determination du score par carré de onze
+//Calculating the scores of a 11 by 11 square for each pixel
 void ball_score (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[], pixelscore ballscore[], int whiterange[], int yellowrange[], int redrange[]) {
     for (int i=Lmin; i<=Lmax-11; i++) {
         
@@ -191,13 +163,13 @@ void ball_score (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[
             for (int k=i;k<i+11;k++) {
                 for(int l=j;l<j+11;l++) {
                     
-                    //Compteur du score boule blanche
+                    //White ball score count
                     if(ballcolor[k*C+l].red>=whiterange[0] && ballcolor[k*C+l].red<=whiterange[1] && ballcolor[k*C+l].green>=whiterange[2] && ballcolor[k*C+l].green<=whiterange[3] && ballcolor[k*C+l].blue>=whiterange[4] && ballcolor[k*C+l].blue<=whiterange[5]) ballscore[i*C+j].white++;
 
-                    //Compteur du score boule jaune
+                    //Yellow ball score count
                     if(ballcolor[k*C+l].red>=yellowrange[0] && ballcolor[k*C+l].red<=yellowrange[1] && ballcolor[k*C+l].green>=yellowrange[2] && ballcolor[k*C+l].green<=yellowrange[3] && ballcolor[k*C+l].blue>=yellowrange[4] && ballcolor[k*C+l].blue<=yellowrange[5]) ballscore[i*C+j].yellow++;
                         
-                    //Compteur du score boule rouge
+                    //Red ball score count
                     if(ballcolor[k*C+l].red>=redrange[0] && ballcolor[k*C+l].red<=redrange[1] && ballcolor[k*C+l].green>=redrange[2] && ballcolor[k*C+l].green<=redrange[3] && ballcolor[k*C+l].blue>=redrange[4] && ballcolor[k*C+l].blue<=redrange[5]) ballscore[i*C+j].red++;
                 }
             }
@@ -205,7 +177,7 @@ void ball_score (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[
     }
 }
 
-//Détermination des coordonnées des boules
+//Determining the coordinates
 struct coord ball_coord (int C, int Lmin, int Lmax, int Cmin, int Cmax, pixelscore ballscore[]) {
     
     struct coord coordinates = {0, 0, 0, 0, 0, 0, 0, 0, 0} ;
