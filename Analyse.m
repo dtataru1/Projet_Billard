@@ -1,20 +1,17 @@
-clc, close all, clear
+clc, clear, close all;
 
-X1 = [286  286  286  286  287  308  330  353  371  386  397  408  419  431  442  453  465  478  489  499  510  523  534  547  558  570  581  593  606  618  631  641  649  657  665  673  681  689  697  705  712  720  728  733  729  725  721  717  714  710  707  704  700  697  694  691  688  685  682  679  677  673  671  668  666  663  661  659  656  654  652  650  648  646  644  642  640  639  637  635  634  632  630  630  628  627  626  625  624  623  622  621  620  620  619  619  618  618  618  618
+X1 = [284  284  284  284  284  284  213  131  186  246  301  354  405  451  497  542  587  633  679  725  708  671  639  609  583  558  533  508  483  458  433  409  385  361  337  313  289  265  243  219  196  173  149  129  146  162  175  189  202  215  227  239  252  265  277  288  301  313  325  337  347  359  371  382  393  404  415  426  437  448  458  468  479  489  500  509  519  529  539  549  559  568  577  587  596  605  614  623  632  641  650  658  667  675  684  692  700  708  716  724  731  733  729  724  720  716  712  708  704  701  697
 ];
-Y1 = [287  287  287  287  287  311  336  362  382  381  365  352  339  327  315  301  288  275  262  250  237  223  211  197  184  170  159  144  130  116  102  99  109  115  121  127  133  139  146  152  158  164  170  175  179  183  187  191  194  198  201  205  208  211  214  218  221  224  227  230  233  235  238  241  244  246  249  251  253  255  258  259  262  264  266  267  269  271  273  274  276  277  278  280  281  282  283  285  286  287  287  288  289  289  290  290  290  291  291  291
+Y1 = [354  354  354  354  354  354  346  345  343  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  341  340  340  340  340  340  340  340  340  340  339  339  339  339  338  338  338  338  338  337  337  337  337  336  336  336  336  336  336  336  336  335  335  335  335  335  335  335  335  335  335  335  335  335  335  335  335  335  335  335  335  335  336  336
 ];
-X2 = [296  296  290  285  279  251  222  191  166  135  144  168  192  216  238  258  278  298  316  334  352  376  396  418  437  460  480  504  526  548  572  594  618  640  664  686  709  732  720  705  692  679  665  652  638  626  613  600  587  575  562  550  538  526  514  502  490  478  467  456  444  432  421  410  399  388  377  366  356  345  334  324  314  304  294  284  273  263  254  244  234  225  218  210  204  196  189  182  175  168  162  154  148  142  139  136  134  132  130  130
+X2 = [130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  130  129  129  129  129  129  129  129  129  130  130  132  132  134  134  135  136  137  137  138  139  140  140  142  141  142  142  143  144  144  144  144  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  146  145  145  145  145  145  145  145  145
 ];
-Y2 = [99  103  152  208  266  302  332  365  388  359  330  303  277  250  225  202  180  157  136  116  99  117  132  145  156  170  181  195  209  222  236  249  263  276  289  303  316  329  344  359  375  390  383  374  366  357  348  340  332  324  315  307  299  292  283  275  268  260  253  245  237  230  223  215  208  201  194  187  180  173  167  160  153  147  140  134  128  121  115  109  103  99  102  105  108  111  113  116  119  122  124  127  129  131  130  129  128  128  128  127
+Y2 = [262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  262  266  269  273  276  279  282  285  288  290  293  296  298  301  303  305  307  309  311  312  314  316  318  319  320  321  322  323  325  325  326  327  327  328  329  329  329  329  330  330  330  329  329  329  329  329  329  329  329  329  329  329  329  329  329  329  329
 ];
-X3 = [136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  135  133  132  131  130  129  130
+X3 = [597  597  597  521  404  308  291  287  281  273  264  260  256  250  243  234  223  213  202  196  192  188  184  179  175  171  167  163  158  154  150  147  142  138  134  131  130  130  130  130  130  131  131  131  131  131  132  131  131  132  132  132  132  133  133  134  136  137  139  140  142  143  144  145  146  147  148  149  150  151  152  153  153  153  154  154  155  155  155  155  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156  156
 ];
-Y3 = [142  142  143  142  142  143  143  142  142  143  142  142  143  142  143  142  142  143  142  142  142  142  142  142  142  142  143  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  143  146  147  149  151  153  153
+Y3 = [121  121  121  181  272  346  381  291  226  165  110  126  169  209  246  280  315  345  378  375  352  332  314  297  280  263  246  230  213  196  180  165  148  132  116  101  107  116  125  134  142  150  158  166  175  182  190  198  205  213  220  228  235  242  249  251  253  254  256  258  259  261  262  263  264  266  267  268  269  270  271  271  272  273  273  274  274  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275  275
 ];
-
-
-
 
 % X1-> red, X2->Yellow, X3-> White
 %% Initiate the script
@@ -36,13 +33,34 @@ Ymax = max([Y1,Y2,Y3]);
 Xframe = [Xmin Xmax Xmax Xmin Xmin];
 Yframe = [Ymin Ymin Ymax Ymax Ymin];
 
+OX1=isoutlier(X1,'movmedian',5);
+OY1=isoutlier(Y1,'movmedian',5);
+OX2=isoutlier(X2,'movmedian',5);
+OY2=isoutlier(Y2,'movmedian',5);
+OX3=isoutlier(X3,'movmedian',5);
+OY3=isoutlier(Y3,'movmedian',5);
+
+OX1id = find(OX1);
+OY1id = find(OY1);
+OX2id = find(OX2);
+OY2id = find(OY2);
+OX3id = find(OX3);
+OY3id = find(OY3);
+
+X1(OX1id)=X1(OX1id-1);
+Y1(OY1id)=Y1(OY1id-1);
+X2(OX2id)=X2(OX2id-1);
+Y2(OY2id)=Y2(OY2id-1);
+X3(OX3id)=X3(OX3id-1);
+Y3(OY3id)=Y3(OY3id-1);
+
 figure(1);
 hold on
     set(gca,'Color',[0.4,0.4,0.4]);
-    plot(Xframe, Yframe,'-b','DisplayName','Bords du billard');
-    plot(X1,Y1,'-r','DisplayName','Boule rouge');
-    plot(X2,Y2,'-y','DisplayName','Boule jaune');
-    plot(X3,Y3,'-w','DisplayName','Boule blanche');
+    plot(Xframe, Yframe,'-*b','DisplayName','Bords du billard');
+    plot(X1,Y1,'-*r','DisplayName','Boule rouge');
+    plot(X2,Y2,'-*y','DisplayName','Boule jaune');
+    plot(X3,Y3,'-*w','DisplayName','Boule blanche');
     legend('TextColor', 'white');
     hold off
 %% Détection de la premiere balle qui bouge
@@ -54,17 +72,17 @@ distB3 = sqrt((X3-X3(1)).^2+(Y3-Y3(1)).^2);
     
 b1m=find(abs(distB1)>d, 1);
 if isempty(b1m) 
-   b1m = size(X1,2);
+   b1m = size(X1,2)-2;
    fprintf('La balle ne touche pas la 3ème boule');
 end
 b2m=find(abs(distB2)>d, 1);
 if isempty(b2m) 
-   b2m = size(X2,2); 
+   b2m = size(X2,2)-2; 
    fprintf('La balle ne touche pas la 3ème boule');
 end
 b3m=find(abs(distB3)>d, 1);
 if isempty(b3m) 
-   b3m = size(X3,2);
+   b3m = size(X3,2)-2;
    fprintf('La balle ne touche pas la 3ème boule');
 end
 %plus petit indice de début de mouvement tfirst et numero de la boule ifirst
@@ -128,25 +146,38 @@ switch ifirst
     end
 end
 
-    rbndXmin = find(abs(XFIRST(tsecond:tthird)-Xmin)<= dboule);
-    rbndXmax = find(abs(XFIRST(tsecond:tthird)-Xmax)<= dboule);
-    rbndYmin = find(abs(YFIRST(tsecond:tthird)-Ymin)<= dboule);
-    rbndYmax = find(abs(YFIRST(tsecond:tthird)-Ymax)<= dboule);
+    rbndXmin = find(abs(XFIRST-Xmin)<= dboule)
+    rbndXmax = find(abs(XFIRST-Xmax)<= dboule)
+    rbndYmin = find(abs(YFIRST-Ymin)<= dboule)
+    rbndYmax = find(abs(YFIRST-Ymax)<= dboule)
  
+    rbndXmin = rbndXmin >= tsecond & rbndXmin<=tthird 
     
-    
-    rbndYmax = abs(diff([0,rbndYmax]))>1;
-    rbndYmin = abs(diff([0,rbndYmin]))>1;
-    rbndXmax = abs(diff([0,rbndXmax]))>1;
-    rbndXmin = abs(diff([0,rbndXmin]))>1;
+    rbndYmax = abs(diff([0,rbndYmax]))>1
+    rbndYmin = abs(diff([0,rbndYmin]))>1
+    rbndXmax = abs(diff([0,rbndXmax]))>1
+    rbndXmin = abs(diff([0,rbndXmin]))>1
     
     nbrebonds = size(find(rbndXmax),2) + size(find(rbndYmax),2) + size(find(rbndXmin),2)+size(find(rbndYmin),2)
 
     
 %% Detection des chocs entre les boules   
 
-chocs12 = find(abs(YFIRST-YSECOND)<=20 & abs(XFIRST-XSECOND<=20))
+chocs12 = find(abs(YFIRST(tsecond-2:tsecond+2)-YSECOND(tsecond-2:tsecond+2))<=35 & abs(XFIRST(tsecond-2:tsecond+2)-XSECOND(tsecond-2:tsecond+2))<=35);
   
-chocs13 = find(abs(YFIRST(tthird-5:tthird+5)-YTHIRD(tthird-5:tthird+5))<=20 & abs(XFIRST(tthird-5:tthird+5)-XTHIRD(tthird-5:tthird+5))<=20)
+chocs13 = find(abs(YFIRST(tthird-2:tthird+2)-YTHIRD(tthird-2:tthird+2))<=35 & abs(XFIRST(tthird-2:tthird+2)-XTHIRD(tthird-2:tthird+2))<=35);
     
-    
+if isempty(chocs12) == 1
+    fprintf('pas de choc sur');
+else
+    fprintf('choc sur photo %d\n',tsecond);
+end
+
+if isempty(chocs13) == 1
+    fprintf('pas de choc sur');
+else
+    fprintf('choc sur photo %d\n',tthird);
+end
+
+
+
