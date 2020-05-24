@@ -61,7 +61,7 @@ hold on
     plot(X2,Y2,'.-y','DisplayName','Boule jaune');
     plot(X3,Y3,'.-w','DisplayName','Boule blanche');
     legend('TextColor', 'white');
-    hold off
+
 %% Détection de la premiere balle qui bouge
     
 d=2;
@@ -72,18 +72,23 @@ distB3 = sqrt((X3-X3(1)).^2+(Y3-Y3(1)).^2);
 mb1=find(distB1>d, 1);
 mb2=find(distB2>d, 1);
 mb3=find(distB3>d, 1);
-
+touch = 1;
 if isempty(mb1) 
-   mb1 = size(X1,2)-2;
+   mb1 = size(X1,2);
    fprintf('La balle ne touche pas la 3ème boule');
+   touch = 0;
 end
 if isempty(mb2) 
-   mb2 = size(X2,2)-2; 
+   mb2 = size(X2,2); 
    fprintf('La balle ne touche pas la 3ème boule');
+      touch = 0;
+
 end
 if isempty(mb3) 
-   mb3 = size(X3,2)-2;
+   mb3 = size(X3,2);
    fprintf('La balle ne touche pas la 3ème boule');
+      touch = 0;
+
 end
 
 %plus petit indice de début de mouvement tfirst et numero de la boule ifirst
@@ -161,16 +166,21 @@ end
     rbndYmax = rbndYmax(rbndYmax >= tsecond & rbndYmax<=tthird & abs(diff([0,rbndYmax]))>1);
     
     
- 
-    
-    nbrebonds = size(find(rbndXmax),2) + size(find(rbndYmax),2) + size(find(rbndXmin),2)+size(find(rbndYmin),2);
+    nbrebonds = size(find(rbndXmax),2) + size(find(rbndYmax),2) + size(find(rbndXmin),2)+size(find(rbndYmin),2)
 
+       
+        plot(XFIRST(rbndXmin),YFIRST(rbndXmin),'*','MarkerSize',15);
+        plot(XFIRST(rbndXmax),YFIRST(rbndXmax),'*','MarkerSize',15);
+        plot(XFIRST(rbndYmin),YFIRST(rbndYmin),'*','MarkerSize',15);
+        plot(XFIRST(rbndYmax),YFIRST(rbndYmax),'*','MarkerSize',15);
+        
     
+    hold off
 %% Detection des chocs entre les boules   
 
-chocs12 = find(abs(YFIRST(tsecond-2:tsecond+2)-YSECOND(tsecond-2:tsecond+2))<=35 & abs(XFIRST(tsecond-2:tsecond+2)-XSECOND(tsecond-2:tsecond+2))<=35);
+chocs12 = find(abs(YFIRST(tsecond)-YSECOND(tsecond))<=35 & abs(XFIRST(tsecond)-XSECOND(tsecond))<=35);
   
-chocs13 = find(abs(YFIRST(tthird)-YTHIRD(tthird))<=35 & abs(XFIRST(tthird)-XTHIRD(tthird)<=35));
+chocs13 = find(abs(YFIRST(tthird)-YTHIRD(tthird))<=35 & abs(XFIRST(tthird)-XTHIRD(tthird))<=35);
     
 if isempty(chocs12) == 1
     fprintf('pas de choc sur');
@@ -178,7 +188,8 @@ else
     fprintf('choc sur photo %d\n',tsecond);
 end
 
-if isempty(chocs13) == 1
+if isempty(chocs13) == 1 | touch == 0;
+
     fprintf('pas de choc sur');
 else
     fprintf('choc sur photo %d\n',tthird);
