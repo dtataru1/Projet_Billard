@@ -1,6 +1,13 @@
-clc, clear, close all
-Folder = 'F2';
-
+width = 854;
+height=480;
+Folder='F1';
+Rband = 67;
+Gband=94;
+Bband = 105;
+Rball = 171;
+Gball=132;
+Bball=159;
+line='';
 X1 = [656  656  656  656  656  656  656  656  656  656  656  656  656  656  646  624  605  589  572  557  540  524  508  492  476  461  445  429  413  398  383  368  353  341  330  319  308  297  286  275  265  254  244  233  223  213  202  192  183  173  163  153  143  134  132  138  143  149  154  159  164  169  174  178  183  188  193  198  202  206  210  215  219  223  228  231  235  239  243  246  250  253  257  260  263  267  270  273  276  278  281  284  287  289  291  294  297  299  301  303  305  308  309  311  312  315  316  318  319  320  322  322  324  325  326  326  327  329  329  329  330  330  330  331  331  331  332  332  332  332  332  333
 ];
 Y1 = [152  152  152  152  152  152  152  152  152  152  152  152  152  152  161  177  192  205  219  231  244  257  270  283  295  308  320  333  344  357  369  381  389  381  375  369  363  357  352  346  340  334  329  323  317  313  307  301  296  291  285  280  275  270  266  261  256  252  247  243  239  235  231  227  223  219  215  211  208  205  201  197  194  190  187  184  181  178  174  171  169  166  163  160  157  155  152  149  147  145  143  141  138  136  134  133  130  128  127  125  123  121  120  119  117  116  115  113  112  111  110  109  108  107  106  106  105  104  104  103  103  102  101  101  101  101  101  100  100  100  100  100
@@ -13,21 +20,7 @@ X3 = [131  131  130  130  130  130  130  130  130  130  130  130  130  130  130 
 ];
 Y3 = [321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321  321
 ];
-
-Rball = 120;
-Gball = 110;
-Bball = 110;
-Rband = 0;
-Gband = 255;
-Bband = 255;
-
-height = 480;
-width = 854;
-line = '.-';
-
-% X1-> red, X2->Yellow, X3-> White
-
-%% Changement des coordonnées pour matlab
+%% Changement des coordonnÃ©es pour matlab
 
 Y1 = (height - Y1);
 Y2 = (height - Y2);
@@ -99,7 +92,7 @@ X3(OX3id)=X3(OX3id-1);
 Y3(OY3id)=Y3(OY3id-1);
 
 
-%% Détection de la premiere balle qui bouge
+%% DÃ©tection de la premiere balle qui bouge
     
 d=2;
 
@@ -115,23 +108,23 @@ touch = 2;
 
 if isempty(mb1) 
    mb1 = size(X1,2)-2;
-   fprintf('La balle ne touche pas la 3ème boule');
+   fprintf('La balle ne touche pas la 3Ã¨me boule');
    touch = touch - 1;
 end
 if isempty(mb2) 
    mb2 = size(X2,2)-2; 
-   fprintf('La balle ne touche pas la 3ème boule');
+   fprintf('La balle ne touche pas la 3Ã¨me boule');
       touch = touch - 1;
 
 end
 if isempty(mb3) 
    mb3 = size(X3,2)-2;
-   fprintf('La balle ne touche pas la 3ème boule');
+   fprintf('La balle ne touche pas la 3Ã¨me boule');
       touch = touch - 1;
 
 end
 
-%plus petit indice de début de mouvement tfirst et numero de la boule ifirst
+%plus petit indice de dÃ©but de mouvement tfirst et numero de la boule ifirst
 
 A=[mb1,mb2,mb3];
 [tfirst,ifirst] = min(A);
@@ -261,16 +254,16 @@ hold on
     plot(X1,Y1,line,'DisplayName','Boule rouge', 'Color', [1 0 0]);
     plot(X2,Y2,line,'DisplayName','Boule jaune', 'Color', [0.98 0.98 0]);
     plot(X3,Y3,line,'DisplayName', 'Boule blanche', 'Color', [0 0 0]);
-    plot(XFIRST(rbndXmin),YFIRST(rbndXmin),'o','MarkerSize',8, 'MarkerFaceColor', Bandcol);
-    plot(XFIRST(rbndXmax),YFIRST(rbndXmax),'o','MarkerSize',8, 'MarkerFaceColor', Bandcol);
-    plot(XFIRST(rbndYmin),YFIRST(rbndYmin),'o','MarkerSize',8, 'MarkerFaceColor', Bandcol);
-    plot(XFIRST(rbndYmax),YFIRST(rbndYmax),'o','MarkerSize',8, 'MarkerFaceColor', Bandcol);
+    plot(XFIRST(rbndXmin),YFIRST(rbndXmin),'o','MarkerSize',6, 'MarkerFaceColor', Bandcol, 'MarkerEdgeColor', Bandcol);
+    plot(XFIRST(rbndXmax),YFIRST(rbndXmax),'o','MarkerSize',6, 'MarkerFaceColor', Bandcol, 'MarkerEdgeColor', Bandcol);
+    plot(XFIRST(rbndYmin),YFIRST(rbndYmin),'o','MarkerSize',6, 'MarkerFaceColor', Bandcol, 'MarkerEdgeColor', Bandcol);
+    plot(XFIRST(rbndYmax),YFIRST(rbndYmax),'o','MarkerSize',6, 'MarkerFaceColor', Bandcol, 'MarkerEdgeColor', Bandcol);
     
     if touch == 1
-    plot(XFIRST(tsecond),YFIRST(tsecond),'o','MarkerSize',8, 'MarkerFaceColor', Ballcol);
+    plot(XFIRST(tsecond),YFIRST(tsecond),'o','MarkerSize',8, 'MarkerFaceColor', Ballcol, 'MarkerEdgeColor', Ballcol);
     end
     if touch == 2
-    plot(XFIRST(tthird),YFIRST(tthird),'o','MarkerSize',8, 'MarkerFaceColor', Ballcol);
+    plot(XFIRST(tthird),YFIRST(tthird),'o','MarkerSize',8, 'MarkerFaceColor', Ballcol, 'MarkerEdgeColor', Ballcol);
     end
     
     text(Xmin, 70, player);
@@ -284,8 +277,3 @@ hold on
     hold off
              
 print('ScoreSheet','-dpdf');
-
-
-
-
-
