@@ -29,7 +29,7 @@ typedef struct coord{
 
 
 void ball_color (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[], unsigned int pixel[]);
-void ball_score (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[], pixelscore ballscore[], int whiterange[], int yellowrange[], int redrange[]);
+void ball_score (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[], pixelscore ballscore[], int whiterange[], int yellowrange[], int redrange[], int bluerange[]);
 struct coord ball_coord (int C, int Lmin, int Lmax, int Cmin, int Cmax, pixelscore ballscore[]);
 
 int main (int argc, char *argv[]) {
@@ -104,7 +104,7 @@ int main (int argc, char *argv[]) {
     
     //Converting to RGB and determining the coordinates of the three balls
     ball_color(C, Lmin, Lmax, Cmin, Cmax, ballcolor, pixels);
-    ball_score(C, Lmin, Lmax, Cmin, Cmax, ballcolor, ballscore, whiterange, yellowrange, redrange);
+    ball_score(C, Lmin, Lmax, Cmin, Cmax, ballcolor, ballscore, whiterange, yellowrange, redrange, bluerange);
     coord coordinates = ball_coord(C, Lmin, Lmax, Cmin, Cmax, ballscore);
     
     //Error management
@@ -148,7 +148,7 @@ void ball_color (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[
 
 
 //Calculating the scores of a 11 by 11 square for each pixel
-void ball_score (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[], pixelscore ballscore[], int whiterange[], int yellowrange[], int redrange[]) {
+void ball_score (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[], pixelscore ballscore[], int whiterange[], int yellowrange[], int redrange[], int bluerange[]) {
     for (int i=Lmin; i<=Lmax-11; i++) {
         
         //Initialisation des scores à 0 pour chaque pixel
@@ -159,7 +159,9 @@ void ball_score (int C, int Lmin, int Lmax, int Cmin, int Cmax, color ballcolor[
         }
         
         for (int j=Cmin; j<=Cmax-11; j++) {
-            
+            while(ballcolor[(i+5)*C+j+5].red>=bluerange[0] && ballcolor[(i+5)*C+j+5].red<=bluerange[1] && ballcolor[(i+5)*C+j+5].green>=bluerange[2] && ballcolor[(i+5)*C+j+5].green<=bluerange[3] && ballcolor[(i+5)*C+j+5].blue>=bluerange[4] && ballcolor[(i+5)*C+j+5].blue<=bluerange[5]){
+                j++;
+            }
             for (int k=i;k<i+11;k++) {
                 for(int l=j;l<j+11;l++) {
                     
