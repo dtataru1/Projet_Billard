@@ -180,4 +180,8 @@ else
 end
 
 
+%% Sauvegarde de la figure
+
+saveas(figure(1),'ScoreSheet.pdf');
+
 
