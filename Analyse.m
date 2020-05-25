@@ -26,10 +26,13 @@ Y1 = (height - Y1);
 Y2 = (height - Y2);
 Y3 = (height - Y3);
 
+%% Normalisation des valeurs RGB
+
 Ballcol = [Rball Gball Bball]./255;
 Bandcol = [Rband Gband Bband]./255;
 
 %% Detection des bords
+
 Xmin = min([X1,X2,X3]);
 Xmax = max([X1,X2,X3]);
 Ymin = min([Y1,Y2,Y3]);
@@ -37,6 +40,8 @@ Ymax = max([Y1,Y2,Y3]);
 
 Xframe = [Xmin Xmax Xmax Xmin Xmin];
 Yframe = [Ymin Ymin Ymax Ymax Ymin];
+
+%% Détection des valeurs absurdes
 
 OX1=isoutlier(X1,'movmedian',5);
 OY1=isoutlier(Y1,'movmedian',5);
@@ -104,6 +109,8 @@ mb1=find(distB1>d, 1);
 mb2=find(distB2>d, 1);
 mb3=find(distB3>d, 1);
 
+%% Calcul du nombre de boules touchées
+
 touch = 2;
 
 if isempty(mb1) 
@@ -120,7 +127,7 @@ if isempty(mb3)
       touch = touch - 1;
 end
 
-%plus petit indice de début de mouvement tfirst et numero de la boule ifirst
+%% Détermination de l'ordre de mouvement des boules
 
 A=[mb1,mb2,mb3];
 [tfirst,ifirst] = min(A);
@@ -128,14 +135,11 @@ A=[mb1,mb2,mb3];
 A(ifirst) = [];
 tsecond = min(A);
 
-%deteciton des rebonds contre les bandes de la balle I
-dboule = 9;
-
 switch ifirst
     case 1
     XFIRST = X1;
     YFIRST = Y1;
-    player = 'ScoreSheet for "Red" ';
+    player = 'Score Sheet for "Red" ';
     switch ithird
         case 2
             XSECOND = X3;
@@ -147,15 +151,13 @@ switch ifirst
             XSECOND = X2;
             YSECOND = Y2;
             XTHIRD = X3;
-            YTHIRD = Y3;
-            
+            YTHIRD = Y3;   
     end
-    
     case 2
     XFIRST = X2;
     YFIRST = Y2;
-    player = 'ScoreSheet for "Yellow" ';
-            switch ithird
+    player = 'Score Sheet for "Yellow" ';
+    switch ithird
         case 1
             XSECOND = X3;
             YSECOND = Y3;
@@ -166,12 +168,12 @@ switch ifirst
             YSECOND = Y1;
             XTHIRD = X3;
             YTHIRD = Y3;
-            end
+    end
     case 3
     XFIRST = X3;
     YFIRST = Y3;
-    player = 'ScoreSheet for "White" ';
-     switch ithird
+    player = 'Score Sheet for "White" ';
+    switch ithird
         case 1
             XSECOND = X2;
             YSECOND = Y2;
@@ -185,29 +187,34 @@ switch ifirst
     end
 end
 
-    rbndXmin = find(abs(XFIRST-Xmin)<= dboule);
-    rbndXmin = rbndXmin(rbndXmin >=tfirst & abs(diff([0,rbndXmin]))>1);
+%% Détection des chocs entre la premère boule et les bandes
+dboule = 9;
+
+rbndXmin = find(abs(XFIRST-Xmin)<= dboule);
+rbndXmin = rbndXmin(rbndXmin >=tfirst & abs(diff([0,rbndXmin]))>1);
     
-    rbndXmax = find(abs(XFIRST-Xmax)<= dboule);
-    rbndXmax = rbndXmax(rbndXmax >=tfirst & abs(diff([0,rbndXmax]))>1);
+rbndXmax = find(abs(XFIRST-Xmax)<= dboule);
+rbndXmax = rbndXmax(rbndXmax >=tfirst & abs(diff([0,rbndXmax]))>1);
     
-    rbndYmin = find(abs(YFIRST-Ymin)<= dboule);
-    rbndYmin = rbndYmin(rbndYmin >=tfirst & abs(diff([0,rbndYmin]))>1);
+rbndYmin = find(abs(YFIRST-Ymin)<= dboule);
+rbndYmin = rbndYmin(rbndYmin >=tfirst & abs(diff([0,rbndYmin]))>1);
     
-    rbndYmax = find(abs(YFIRST-Ymax)<= dboule);
-    rbndYmax = rbndYmax(rbndYmax >=tfirst & abs(diff([0,rbndYmax]))>1);
+rbndYmax = find(abs(YFIRST-Ymax)<= dboule);
+rbndYmax = rbndYmax(rbndYmax >=tfirst & abs(diff([0,rbndYmax]))>1);
     
-    nbrebonds = size(rbndXmin,2) + size(rbndXmax,2) + size(rbndYmin,2) + size(rbndYmax,2);
+nbrebonds = size(rbndXmin,2) + size(rbndXmax,2) + size(rbndYmin,2) + size(rbndYmax,2);
     
-    rebondsentre = size(rbndXmin(rbndXmin>=tsecond & rbndXmin<=tthird),2)...
-        +size(rbndXmax(rbndXmax>=tsecond & rbndXmax<=tthird),2)...
-        +size(rbndYmin(rbndYmin>=tsecond & rbndYmin<=tthird),2)...
-        +size(rbndYmax(rbndYmax>=tsecond & rbndYmax<=tthird),2);
+rebondsentre = size(rbndXmin(rbndXmin>=tsecond & rbndXmin<=tthird),2)...
+              +size(rbndXmax(rbndXmax>=tsecond & rbndXmax<=tthird),2)...
+              +size(rbndYmin(rbndYmin>=tsecond & rbndYmin<=tthird),2)...
+              +size(rbndYmax(rbndYmax>=tsecond & rbndYmax<=tthird),2);
          
     
-    DistR = sum(sqrt(diff(X1).^2 + diff(Y1).^2));
-    DistY = sum(sqrt(diff(X2).^2 + diff(Y2).^2));
-    DistW = sum(sqrt(diff(X3).^2 + diff(Y3).^2));
+%% Calcul des distances parcourues par chaque boule    
+    
+DistR = sum(sqrt(diff(X1).^2 + diff(Y1).^2));
+DistY = sum(sqrt(diff(X2).^2 + diff(Y2).^2));
+DistW = sum(sqrt(diff(X3).^2 + diff(Y3).^2));
     
 %% Detection des chocs entre les boules   
 
@@ -228,7 +235,7 @@ end
 %     fprintf('choc sur photo %d\n',tthird);
 % end
 
-
+%% Détermination du score
 if touch == 2 && rebondsentre >= 3
     score = 'Status : Win';
 else
@@ -248,14 +255,14 @@ hold on
     ylim([0,Ymax+20]);
     plot(Xframe, Yframe,'-b','DisplayName','Bords du billard','LineWidth',4);
     plot(X1,Y1,line,'DisplayName','Boule rouge', 'Color', [1 0 0]);
-    plot(X2,Y2,line,'DisplayName','Boule jaune', 'Color', [0.98 0.98 0]);
+    plot(X2,Y2,line,'DisplayName','Boule jaune', 'Color', [0.8 0.8 0]);
     plot(X3,Y3,line,'DisplayName', 'Boule blanche', 'Color', [0 0 0]);
     plot(XFIRST(rbndXmin),YFIRST(rbndXmin),'o','MarkerSize',6, 'MarkerFaceColor', Bandcol, 'MarkerEdgeColor', Bandcol);
     plot(XFIRST(rbndXmax),YFIRST(rbndXmax),'o','MarkerSize',6, 'MarkerFaceColor', Bandcol, 'MarkerEdgeColor', Bandcol);
     plot(XFIRST(rbndYmin),YFIRST(rbndYmin),'o','MarkerSize',6, 'MarkerFaceColor', Bandcol, 'MarkerEdgeColor', Bandcol);
     plot(XFIRST(rbndYmax),YFIRST(rbndYmax),'o','MarkerSize',6, 'MarkerFaceColor', Bandcol, 'MarkerEdgeColor', Bandcol);
     
-    if touch == 1
+    if touch >= 1
     plot(XFIRST(tsecond),YFIRST(tsecond),'o','MarkerSize',8, 'MarkerFaceColor', Ballcol, 'MarkerEdgeColor', Ballcol);
     end
     if touch == 2
@@ -270,7 +277,7 @@ hold on
     text(Xmin, 20, ['Dist(r) : ',num2str(DistR)]);
     text(Xmin+200, 20, ['Dist(y) : ',num2str(DistY)]);
     text(Xmin+400, 20, ['Dist(w) : ',num2str(DistW)]);
-    hold off
+    hohgfld off
              
 print('ScoreSheet','-dpdf');
 print('ScoreSheet','-dpng');
