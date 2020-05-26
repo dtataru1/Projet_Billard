@@ -116,7 +116,7 @@ int main (int argc, char *argv[]) {
    if((abs(coordinates.whitex-coordinates.yellowx)<11 && abs(coordinates.whitey-coordinates.yellowy)<11) || (abs(coordinates.whitex-coordinates.redx)<11 && abs(coordinates.whitey-coordinates.redy)<11)
        || (abs(coordinates.redx-coordinates.yellowx)<11 && abs(coordinates.redy-coordinates.yellowy)<11)) {
         fprintf(stderr, "Au moins deux des boules se superposent.\n");
-        return -1;
+        return 0;
     }
     
     FILE* Pos = NULL;

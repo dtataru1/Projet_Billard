@@ -277,7 +277,7 @@ hold on
     text(Xmin, 20, ['Dist(r) : ',num2str(DistR)]);
     text(Xmin+200, 20, ['Dist(y) : ',num2str(DistY)]);
     text(Xmin+400, 20, ['Dist(w) : ',num2str(DistW)]);
-    hohgfld off
+    hold off
              
 print('ScoreSheet','-dpdf');
 print('ScoreSheet','-dpng');
