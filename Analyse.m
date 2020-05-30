@@ -1,25 +1,41 @@
 width = 854;
 height=480;
-Folder='F3';
+Folder='F6';
 Rband = 255;
 Gband=89;
 Bband = 114;
 Rball = 53;
 Gball=255;
 Bball=0;
-line='-';
-X1 = [286  286  286  286  287  308  330  353  371  386  397  408  419  431  442  453  465  478  489  499  510  523  534  547  558  570  581  593  606  618  631  641  649  657  665  673  681  689  697  705  712  720  728  733  729  725  721  717  714  710  707  704  700  697  694  691  688  685  682  679  677  673  671  668  666  663  661  659  656  654  652  650  648  646  644  642  640  639  637  635  634  632  630  630  628  627  626  625  624  623  622  621  620  620  619  619  618  618  618  618
+line='.-';
+X1 = [321  321  321  321  321  321  291  263  237  214  192  169  147  130  147  161  174  187  199  211  223  235  247  259  271  281  293  304  317  328  337  349  360  371  381  391  402  413  423  433  443  453  463  473  483  491  501  511  520  529  538  547  556  565  575  583  591  600  609  617  625  634  642  651  659  666  674  681  690  697  704  711  718  726  730  730  727  724  720  716  712  709  705  702  699  696  692  690  687  684  682  679  677  674  672  670  668  666  664  661  660  658  656  654
 ];
-Y1 = [287  287  287  287  287  311  336  362  382  381  365  352  339  327  315  301  288  275  262  250  237  223  211  197  184  170  159  144  130  116  102  99  109  115  121  127  133  139  146  152  158  164  170  175  179  183  187  191  194  198  201  205  208  211  214  218  221  224  227  230  233  235  238  241  244  246  249  251  253  255  258  259  262  264  266  267  269  271  273  274  276  277  278  280  281  282  283  285  286  287  287  288  289  289  290  290  290  291  291  291
+Y1 = [102  102  102  102  102  102  107  112  117  121  125  129  133  137  137  139  141  142  143  145  146  148  149  151  152  153  155  157  157  159  160  162  163  165  166  167  169  170  171  173  174  175  176  178  179  180  181  183  184  185  186  187  188  189  190  192  193  194  195  196  197  198  199  200  201  202  203  204  205  206  207  208  209  210  211  212  213  213  213  214  215  215  216  217  217  217  218  219  219  220  220  220  221  221  221  221  221  222  222  222  223  222  222  223
 ];
-X2 = [296  296  290  285  279  251  222  191  166  135  144  168  192  216  238  258  278  298  316  334  352  376  396  418  437  460  480  504  526  548  572  594  618  640  664  686  709  732  720  705  692  679  665  652  638  626  613  600  587  575  562  550  538  526  514  502  490  478  467  456  444  432  421  410  399  388  377  366  356  345  334  324  314  304  294  284  273  263  254  244  234  225  218  210  204  196  189  182  175  168  162  154  148  142  139  136  134  132  130  130
+X2 = [442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  442  444  450  454  458  462  466  470  474  478  482  484  488  492  495  498  500  504  506  509  512  514  516  518  520  522  524  526  528  530  532  534  534  536  538  540  540  542  543  544  544  546  546  546  546  547  547  547  547  547
 ];
-Y2 = [99  103  152  208  266  302  332  365  388  359  330  303  277  250  225  202  180  157  136  116  99  117  132  145  156  170  181  195  209  222  236  249  263  276  289  303  316  329  344  359  375  390  383  374  366  357  348  340  332  324  315  307  299  292  283  275  268  260  253  245  237  230  223  215  208  201  194  187  180  173  167  160  153  147  140  134  128  121  115  109  103  99  102  105  108  111  113  116  119  122  124  127  129  131  130  129  128  128  128  127
+Y2 = [228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  228  227  227  227  227  227  227  227  227  227  227  227  227  227  226  226  226  226  226  226  226  226  226  226  226  226  226  226  226  226  226  227  226  227  227  227  227  227  227  227  227  227  227  227  227  227  227
 ];
-X3 = [136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  136  135  133  132  131  130  129  130
+X3 = [500  500  462  412  374  336  324  312  297  280  262  245  229  214  197  182  166  148  133  134  144  153  161  171  180  188  197  206  215  224  233  243  251  260  269  277  286  295  303  311  319  327  335  343  351  358  366  373  381  389  396  403  410  417  424  428  429  429  430  431  431  432  432  433  434  434  435  435  436  436  437  437  437  438  438  438  439  439  439  439  440  440  441  441  441  442  442  443  443  443  443  444  444  444  445  445  445  445  445  445  445  446  446  446
 ];
-Y3 = [142  142  143  142  142  143  143  142  142  143  142  142  143  142  143  142  142  143  142  142  142  142  142  142  142  142  143  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  142  143  146  147  149  151  153  153
+Y3 = [173  173  156  134  117  100  112  128  143  157  171  185  198  210  224  236  249  263  275  288  300  312  324  336  347  359  371  382  389  382  375  368  362  355  349  342  336  330  324  317  311  305  299  294  288  282  276  271  265  260  254  249  243  238  233  228  223  219  215  211  207  203  199  195  191  188  184  181  177  174  171  168  165  162  159  156  154  151  149  147  144  142  140  138  136  134  133  131  129  128  126  125  124  123  122  121  120  119  118  118  117  117  117  116
 ];
+%% File Header
+% MATLAB Script Analyse.m file
+%
+% Group : Axel Rossettini   SCIPER: 303157
+%         Daniel Tataru     SCIPER: 301005
+%         Ellie Tupin       SCIPER: 296441
+%
+% This script determines the score of each sequence (an Analyse.m file is
+% generated at each launch of the LabView program containing this script
+% preceeded by the coordinates of the balls of the sequence)
+%
+% Revision: 
+%           04.2020 Initial release
+%           05.2020 Final version 
+%
+% Coded on MATLAB R2020A/R2019b on macOS
 %% Changement des coordonnées pour matlab
 
 Y1 = (height - Y1);
@@ -31,7 +47,7 @@ Y3 = (height - Y3);
 Ballcol = [Rball Gball Bball]./255;
 Bandcol = [Rband Gband Bband]./255;
 
-%% Detection des bords
+%% Détection des bords
 
 Xmin = min([X1,X2,X3]);
 Xmax = max([X1,X2,X3]);
@@ -57,6 +73,7 @@ OY2id = find(OY2);
 OX3id = find(OX3);
 OY3id = find(OY3);
 
+%Gestion du cas ou la première image est considérée comme absurde
 if isempty(OX1id) == 0  
     if OX1id(1) == 1
     OX1id(1) = [];
@@ -89,6 +106,7 @@ if isempty(OY3id) == 0
     end
 end
 
+%Remplacement par la valeur précédant la valeur absurde
 X1(OX1id)=X1(OX1id-1);
 Y1(OY1id)=Y1(OY1id-1);
 X2(OX2id)=X2(OX2id-1);
@@ -98,7 +116,9 @@ Y3(OY3id)=Y3(OY3id-1);
 
 
 %% Détection de la premiere balle qui bouge
-    
+
+%d désigne la distance minimale ou l'on considère que la balle bouge par
+%rapport à sa position initiale
 d=2;
 
 distB1 = sqrt((X1-X1(1)).^2+(Y1-Y1(1)).^2);
@@ -114,16 +134,16 @@ mb3=find(distB3>d, 1);
 touch = 2;
 
 if isempty(mb1) 
-   mb1 = size(X1,2)-2;
+   mb1 = size(X1,2);
    touch = touch - 1;
 end
 if isempty(mb2) 
-   mb2 = size(X2,2)-2; 
+   mb2 = size(X2,2); 
       touch = touch - 1;
 
 end
 if isempty(mb3) 
-   mb3 = size(X3,2)-2;
+   mb3 = size(X3,2);
       touch = touch - 1;
 end
 
@@ -191,58 +211,36 @@ end
 dboule = 9;
 
 rbndXmin = find(abs(XFIRST-Xmin)<= dboule);
-rbndXmin = rbndXmin(rbndXmin >=tfirst & abs(diff([0,rbndXmin]))>1);
+rbndXmin = rbndXmin(rbndXmin>=tsecond & rbndXmin<=tthird & abs(diff([0,rbndXmin]))>1);
     
 rbndXmax = find(abs(XFIRST-Xmax)<= dboule);
-rbndXmax = rbndXmax(rbndXmax >=tfirst & abs(diff([0,rbndXmax]))>1);
+rbndXmax = rbndXmax(rbndXmax>=tsecond & rbndXmax<=tthird & abs(diff([0,rbndXmax]))>1);
     
 rbndYmin = find(abs(YFIRST-Ymin)<= dboule);
-rbndYmin = rbndYmin(rbndYmin >=tfirst & abs(diff([0,rbndYmin]))>1);
+rbndYmin = rbndYmin(rbndYmin>=tsecond & rbndYmin<=tthird & abs(diff([0,rbndYmin]))>1);
     
 rbndYmax = find(abs(YFIRST-Ymax)<= dboule);
-rbndYmax = rbndYmax(rbndYmax >=tfirst & abs(diff([0,rbndYmax]))>1);
-    
-nbrebonds = size(rbndXmin,2) + size(rbndXmax,2) + size(rbndYmin,2) + size(rbndYmax,2);
-    
-rebondsentre = size(rbndXmin(rbndXmin>=tsecond & rbndXmin<=tthird),2)...
-              +size(rbndXmax(rbndXmax>=tsecond & rbndXmax<=tthird),2)...
-              +size(rbndYmin(rbndYmin>=tsecond & rbndYmin<=tthird),2)...
-              +size(rbndYmax(rbndYmax>=tsecond & rbndYmax<=tthird),2);
-         
-    
+rbndYmax = rbndYmax(rbndYmax>=tsecond & rbndYmax<=tthird & abs(diff([0,rbndYmax]))>1);
+ 
+
+rebondsentre = size(rbndXmin,2) + size(rbndXmax,2) + size(rbndYmin,2) + size(rbndYmax,2);
+               
 %% Calcul des distances parcourues par chaque boule    
     
 DistR = sum(sqrt(diff(X1).^2 + diff(Y1).^2));
 DistY = sum(sqrt(diff(X2).^2 + diff(Y2).^2));
 DistW = sum(sqrt(diff(X3).^2 + diff(Y3).^2));
     
-%% Detection des chocs entre les boules   
-
-% chocs12 = find(abs(YFIRST(tsecond-2:tsecond+2)-YSECOND(tsecond-2:tsecond+2))<=35 & abs(XFIRST(tsecond-2:tsecond+2)-XSECOND(tsecond-2:tsecond+2))<=35);
-%   
-% chocs13 = find(abs(YFIRST(tthird)-YTHIRD(tthird))<=35 & abs(XFIRST(tthird)-XTHIRD(tthird))<=35);
-%     
-% if isempty(chocs12) == 1 || touch<1
-%     fprintf('pas de choc sur\n');
-% else
-%     fprintf('choc sur photo %d\n',tsecond);
-% end
-% 
-% if isempty(chocs13) == 1 || touch < 2
-% 
-%     fprintf('pas de choc sur\n');
-% else
-%     fprintf('choc sur photo %d\n',tthird);
-% end
-
-%% Détermination du score
+%% Verdict de la partie
 if touch == 2 && rebondsentre >= 3
-    score = 'Status : Win';
+    verdict = 'Status : Win';
 else
-    score = 'Status : Loss';
+    verdict = 'Status : Loss';
 end
 
 %% Affichage de la figure
+
+%Affichage de la date et l'heure
 c = clock;
 h = num2str(c(4));
 min = num2str(c(5));
@@ -270,14 +268,16 @@ hold on
     end
     
     text(Xmin, 70, player);
-    text(Xmin+50, 50, score);
+    text(Xmin+50, 50, verdict);
     text(Xmax-250, 80, ['Number of balls touched : ',num2str(touch)]);
-    text(Xmax-250, 65, ['Number of bands touched : ',num2str(nbrebonds)]);
     text(Xmax-300, 50, ['Number of bands touched between balls : ',num2str(rebondsentre)]);
-    text(Xmin, 20, ['Dist(r) : ',num2str(DistR)]);
-    text(Xmin+200, 20, ['Dist(y) : ',num2str(DistY)]);
-    text(Xmin+400, 20, ['Dist(w) : ',num2str(DistW)]);
+    text(Xmin, 20, ['Dist(r) : ',num2str(DistR),'px']);
+    text(Xmin+200, 20, ['Dist(y) : ',num2str(DistY),'px']);
+    text(Xmin+400, 20, ['Dist(w) : ',num2str(DistW),'px']);
     hold off
-             
-print('ScoreSheet','-dpdf');
+
+%Saving as a pdf and also a png in order to display it directly in LabVieW
+%(the png will be overwriten at each sequence, but the pdf will have the
+% sequence name next to it)
+print(strcat('ScoreSheet','_',Folder),'-dpdf');
 print('ScoreSheet','-dpng');

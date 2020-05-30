@@ -1,3 +1,19 @@
+%% File Header
+% MATLAB Script Analyse.m file
+%
+% Group : Axel Rossettini   SCIPER: 303157
+%         Daniel Tataru     SCIPER: 301005
+%         Ellie Tupin       SCIPER: 296441
+%
+% This script determines the score of each sequence (an Analyse.m file is
+% generated at each launch of the LabView program containing this script
+% preceeded by the coordinates of the balls of the sequence)
+%
+% Revision: 
+%           04.2020 Initial release
+%           05.2020 Final version 
+%
+% Coded on MATLAB R2020A/R2019b on macOS
 %% Changement des coordonnées pour matlab
 
 Y1 = (height - Y1);
@@ -9,7 +25,7 @@ Y3 = (height - Y3);
 Ballcol = [Rball Gball Bball]./255;
 Bandcol = [Rband Gband Bband]./255;
 
-%% Detection des bords
+%% Détection des bords
 
 Xmin = min([X1,X2,X3]);
 Xmax = max([X1,X2,X3]);
@@ -35,6 +51,7 @@ OY2id = find(OY2);
 OX3id = find(OX3);
 OY3id = find(OY3);
 
+%Gestion du cas ou la première image est considérée comme absurde
 if isempty(OX1id) == 0  
     if OX1id(1) == 1
     OX1id(1) = [];
@@ -67,6 +84,7 @@ if isempty(OY3id) == 0
     end
 end
 
+%Remplacement par la valeur précédant la valeur absurde
 X1(OX1id)=X1(OX1id-1);
 Y1(OY1id)=Y1(OY1id-1);
 X2(OX2id)=X2(OX2id-1);
@@ -76,7 +94,9 @@ Y3(OY3id)=Y3(OY3id-1);
 
 
 %% Détection de la premiere balle qui bouge
-    
+
+%d désigne la distance minimale ou l'on considère que la balle bouge par
+%rapport à sa position initiale
 d=2;
 
 distB1 = sqrt((X1-X1(1)).^2+(Y1-Y1(1)).^2);
@@ -92,16 +112,16 @@ mb3=find(distB3>d, 1);
 touch = 2;
 
 if isempty(mb1) 
-   mb1 = size(X1,2)-2;
+   mb1 = size(X1,2);
    touch = touch - 1;
 end
 if isempty(mb2) 
-   mb2 = size(X2,2)-2; 
+   mb2 = size(X2,2); 
       touch = touch - 1;
 
 end
 if isempty(mb3) 
-   mb3 = size(X3,2)-2;
+   mb3 = size(X3,2);
       touch = touch - 1;
 end
 
@@ -169,58 +189,36 @@ end
 dboule = 9;
 
 rbndXmin = find(abs(XFIRST-Xmin)<= dboule);
-rbndXmin = rbndXmin(rbndXmin >=tfirst & abs(diff([0,rbndXmin]))>1);
+rbndXmin = rbndXmin(rbndXmin>=tsecond & rbndXmin<=tthird & abs(diff([0,rbndXmin]))>1);
     
 rbndXmax = find(abs(XFIRST-Xmax)<= dboule);
-rbndXmax = rbndXmax(rbndXmax >=tfirst & abs(diff([0,rbndXmax]))>1);
+rbndXmax = rbndXmax(rbndXmax>=tsecond & rbndXmax<=tthird & abs(diff([0,rbndXmax]))>1);
     
 rbndYmin = find(abs(YFIRST-Ymin)<= dboule);
-rbndYmin = rbndYmin(rbndYmin >=tfirst & abs(diff([0,rbndYmin]))>1);
+rbndYmin = rbndYmin(rbndYmin>=tsecond & rbndYmin<=tthird & abs(diff([0,rbndYmin]))>1);
     
 rbndYmax = find(abs(YFIRST-Ymax)<= dboule);
-rbndYmax = rbndYmax(rbndYmax >=tfirst & abs(diff([0,rbndYmax]))>1);
-    
-nbrebonds = size(rbndXmin,2) + size(rbndXmax,2) + size(rbndYmin,2) + size(rbndYmax,2);
-    
-rebondsentre = size(rbndXmin(rbndXmin>=tsecond & rbndXmin<=tthird),2)...
-              +size(rbndXmax(rbndXmax>=tsecond & rbndXmax<=tthird),2)...
-              +size(rbndYmin(rbndYmin>=tsecond & rbndYmin<=tthird),2)...
-              +size(rbndYmax(rbndYmax>=tsecond & rbndYmax<=tthird),2);
-         
-    
+rbndYmax = rbndYmax(rbndYmax>=tsecond & rbndYmax<=tthird & abs(diff([0,rbndYmax]))>1);
+ 
+
+rebondsentre = size(rbndXmin,2) + size(rbndXmax,2) + size(rbndYmin,2) + size(rbndYmax,2);
+               
 %% Calcul des distances parcourues par chaque boule    
     
 DistR = sum(sqrt(diff(X1).^2 + diff(Y1).^2));
 DistY = sum(sqrt(diff(X2).^2 + diff(Y2).^2));
 DistW = sum(sqrt(diff(X3).^2 + diff(Y3).^2));
     
-%% Detection des chocs entre les boules   
-
-% chocs12 = find(abs(YFIRST(tsecond-2:tsecond+2)-YSECOND(tsecond-2:tsecond+2))<=35 & abs(XFIRST(tsecond-2:tsecond+2)-XSECOND(tsecond-2:tsecond+2))<=35);
-%   
-% chocs13 = find(abs(YFIRST(tthird)-YTHIRD(tthird))<=35 & abs(XFIRST(tthird)-XTHIRD(tthird))<=35);
-%     
-% if isempty(chocs12) == 1 || touch<1
-%     fprintf('pas de choc sur\n');
-% else
-%     fprintf('choc sur photo %d\n',tsecond);
-% end
-% 
-% if isempty(chocs13) == 1 || touch < 2
-% 
-%     fprintf('pas de choc sur\n');
-% else
-%     fprintf('choc sur photo %d\n',tthird);
-% end
-
-%% Détermination du score
+%% Verdict de la partie
 if touch == 2 && rebondsentre >= 3
-    score = 'Status : Win';
+    verdict = 'Status : Win';
 else
-    score = 'Status : Loss';
+    verdict = 'Status : Loss';
 end
 
 %% Affichage de la figure
+
+%Affichage de la date et l'heure
 c = clock;
 h = num2str(c(4));
 min = num2str(c(5));
@@ -248,14 +246,16 @@ hold on
     end
     
     text(Xmin, 70, player);
-    text(Xmin+50, 50, score);
+    text(Xmin+50, 50, verdict);
     text(Xmax-250, 80, ['Number of balls touched : ',num2str(touch)]);
-    text(Xmax-250, 65, ['Number of bands touched : ',num2str(nbrebonds)]);
     text(Xmax-300, 50, ['Number of bands touched between balls : ',num2str(rebondsentre)]);
-    text(Xmin, 20, ['Dist(r) : ',num2str(DistR)]);
-    text(Xmin+200, 20, ['Dist(y) : ',num2str(DistY)]);
-    text(Xmin+400, 20, ['Dist(w) : ',num2str(DistW)]);
+    text(Xmin, 20, ['Dist(r) : ',num2str(DistR),'px']);
+    text(Xmin+200, 20, ['Dist(y) : ',num2str(DistY),'px']);
+    text(Xmin+400, 20, ['Dist(w) : ',num2str(DistW),'px']);
     hold off
-             
-print('ScoreSheet','-dpdf');
+
+%Saving as a pdf and also a png in order to display it directly in LabVieW
+%(the png will be overwriten at each sequence, but the pdf will have the
+% sequence name next to it)
+print(strcat('ScoreSheet','_',Folder),'-dpdf');
 print('ScoreSheet','-dpng');
