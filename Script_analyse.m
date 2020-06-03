@@ -249,9 +249,9 @@ hold on
     text(Xmin+50, 50, verdict);
     text(Xmax-250, 80, ['Number of balls touched : ',num2str(touch)]);
     text(Xmax-300, 50, ['Number of bands touched between balls : ',num2str(rebondsentre)]);
-    text(Xmin, 20, ['Dist(r) : ',num2str(DistR),'px']);
-    text(Xmin+200, 20, ['Dist(y) : ',num2str(DistY),'px']);
-    text(Xmin+400, 20, ['Dist(w) : ',num2str(DistW),'px']);
+    text(Xmin, 20, ['Dist(r) : ',num2str(round(DistR)),'px']);
+    text(Xmin+200, 20, ['Dist(y) : ',num2str(round(DistY)),'px']);
+    text(Xmin+400, 20, ['Dist(w) : ',num2str(round(DistW)),'px']);
     hold off
 
 %Saving as a pdf and also a png in order to display it directly in LabVieW
