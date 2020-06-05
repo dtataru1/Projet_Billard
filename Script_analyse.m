@@ -247,7 +247,7 @@ hold on
     
     text(Xmin, 70, player);
     text(Xmin+50, 50, verdict);
-    text(Xmax-250, 80, ['Number of balls touched : ',num2str(touch)]);
+    text(Xmax-250, 70, ['Number of balls touched : ',num2str(touch)]);
     text(Xmax-300, 50, ['Number of bands touched between balls : ',num2str(rebondsentre)]);
     text(Xmin, 20, ['Dist(r) : ',num2str(round(DistR)),'px']);
     text(Xmin+200, 20, ['Dist(y) : ',num2str(round(DistY)),'px']);
