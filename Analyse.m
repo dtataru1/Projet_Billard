@@ -251,7 +251,7 @@ figure(1);
 hold on
     title(['Score Sheet',' ',Folder ,' ', date, ' ', time]);
     ylim([0,Ymax+20]);
-    plot(Xframe, Yframe,'-b','DisplayName','Bords du billard','LineWidth',4);
+    plot(Xframe, Yframe,'-b','DisplayName','Bords du billard','LineWidth',2);
     plot(X1,Y1,line,'DisplayName','Boule rouge', 'Color', [1 0 0]);
     plot(X2,Y2,line,'DisplayName','Boule jaune', 'Color', [0.8 0.8 0]);
     plot(X3,Y3,line,'DisplayName', 'Boule blanche', 'Color', [0 0 0]);
