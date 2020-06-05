@@ -74,7 +74,7 @@ int main (int argc, char *argv[]) {
     
     //In case of incorrect ball diameter, the program stops
     if (balldiameter>20|| balldiameter<5) {
-        fprintf(stderr, "Le diametre de la balle est en dehors des bornes.\n");
+        fprintf(stderr, "Le diametre de la boule est en dehors des bornes.\n");
         return -1;
     }
     
